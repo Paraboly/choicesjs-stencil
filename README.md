@@ -11,7 +11,7 @@
 
 ![pwc-choices](https://raw.githubusercontent.com/paraboly/pwc-choices/repository-resources/Screenshots/JSLibraryBoilerplate.png)
 
-# ChoicesJS Web Component
+# pwc-choices Web Component
 
 Select component which just wraps [ChoicesJS][choicesjs] in a real [Web Component][web-component]. It has been created using [StencilJS][stenciljs], and written with [_Typescript_][typescript] and [_JSX_][jsx].
 
@@ -118,7 +118,7 @@ This library is a fork of the [choicesjs-stencil][choicesjs-stencil] library.
 
 ### Modifications:
 
-starikcetin, tarik.cetin@paraboly.com | ceitnsamedtarik@gmail.com
+starikcetin, tarik.cetin@paraboly.com | cetinsamedtarik@gmail.com
 
 ## License
 
