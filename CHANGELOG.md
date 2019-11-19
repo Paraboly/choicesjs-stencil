@@ -53,4 +53,4 @@
 
 # 1.0.0
 
-- Initial version of `choicesjs-stencil` web component.
+- Initial version of `pwc-choices` web component.

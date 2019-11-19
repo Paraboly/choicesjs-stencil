@@ -23,4 +23,4 @@ www
 # Untracked application files and directories:
 src/components.d.ts
 test/results
-src/components/choicesjs-stencil/*.js
+src/components/pwc-choices/*.js

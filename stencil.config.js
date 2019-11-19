@@ -4,7 +4,7 @@ exports.config = {
   namespace: 'ChoicesJSStencil',
   bundles: [
     {
-      components: [ 'choicesjs-stencil' ]
+      components: [ 'pwc-choices' ]
     }
   ],
   outputTargets: [

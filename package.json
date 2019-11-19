@@ -1,10 +1,10 @@
 {
-  "name": "choicesjs-stencil",
+  "name": "pwc-choices",
   "version": "1.4.0",
   "description": "Select Web Component which wraps ChoicesJS library using StencilJS",
   "repository": {
     "type": "git",
-    "url": "https://github.com/adidas/choicesjs-stencil.git"
+    "url": "https://github.com/adidas/pwc-choices.git"
   },
   "license": "MIT",
   "main": "dist/index.js",

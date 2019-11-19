@@ -1,5 +1,5 @@
-import { h, Component, Element, Method, Prop } from '@stencil/core';
-import { HTMLStencilElement } from '@stencil/core/internal';
+import { h, Component, Element, Method, Prop } from "@stencil/core";
+import { HTMLStencilElement } from "@stencil/core/internal";
 import {
   AjaxFn,
   ClassNames,
@@ -15,15 +15,15 @@ import {
   OnInit,
   OnCreateTemplates,
   UniqueItemText
-} from './interfaces';
-import { getValues, filterObject, isDefined } from './utils';
+} from "./interfaces";
+import { getValues, filterObject, isDefined } from "./utils";
 
 @Component({
-  tag: 'choicesjs-stencil',
-  styleUrl: 'choicesjs-stencil.scss'
+  tag: "pwc-choices",
+  styleUrl: "pwc-choices.scss"
 })
-export class ChoicesJSStencil implements IChoicesProps, IChoicesMethods {
-  @Prop() public type?: 'single' | 'multiple' | 'text';
+export class PwcChoicesComponent implements IChoicesProps, IChoicesMethods {
+  @Prop() public type?: "single" | "multiple" | "text";
   @Prop() public value: string;
   @Prop() public name: string;
 
@@ -44,7 +44,7 @@ export class ChoicesJSStencil implements IChoicesProps, IChoicesMethods {
   @Prop() public searchFields: Array<string> | string;
   @Prop() public searchFloor: number;
   @Prop() public searchResultLimit: number;
-  @Prop() public position: 'auto' | 'top' | 'bottom';
+  @Prop() public position: "auto" | "top" | "bottom";
   @Prop() public resetScrollPosition: boolean;
   @Prop() public addItemFilterFn: ItemFilterFn;
   @Prop() public shouldSort: boolean;
@@ -55,7 +55,7 @@ export class ChoicesJSStencil implements IChoicesProps, IChoicesMethods {
   @Prop() public searchPlaceholderValue: string;
   @Prop() public prependValue: string;
   @Prop() public appendValue: string;
-  @Prop() public renderSelectedChoices: 'always' | 'auto';
+  @Prop() public renderSelectedChoices: "always" | "auto";
   @Prop() public loadingText: string;
   @Prop() public noResultsText: string | NoResultsTextFn;
   @Prop() public noChoicesText: string | NoChoicesTextFn;
@@ -156,7 +156,12 @@ export class ChoicesJSStencil implements IChoicesProps, IChoicesMethods {
   }
 
   @Method()
-  public async setChoices(choices: Array<any>, value: string, label: string, replaceChoices?: boolean) {
+  public async setChoices(
+    choices: Array<any>,
+    value: string,
+    label: string,
+    replaceChoices?: boolean
+  ) {
     this.choice.setChoices(choices, value, label, replaceChoices);
 
     return this;
@@ -218,8 +223,8 @@ export class ChoicesJSStencil implements IChoicesProps, IChoicesMethods {
 
   protected render(): any {
     const attributes = {
-      'data-selector': 'root',
-      'name': this.name || null
+      "data-selector": "root",
+      name: this.name || null
     };
 
     // destroy choices element to restore previous dom structure
@@ -227,23 +232,24 @@ export class ChoicesJSStencil implements IChoicesProps, IChoicesMethods {
     this.destroy();
 
     switch (this.type) {
-    case 'single':
-      this.element =
-        <select { ...attributes }>
-          { this.value ? this.createSelectOptions(this.value) : null }
-        </select>;
-      break;
-    case 'multiple':
-      this.element =
-        <select multiple { ...attributes }>
-          { this.value ? this.createSelectOptions(this.value) : null }
-        </select>;
-      break;
-    case 'text':
-    default:
-      this.element =
-        <input type="text" value={ this.value } { ...attributes }/>;
-      break;
+      case "single":
+        this.element = (
+          <select {...attributes}>
+            {this.value ? this.createSelectOptions(this.value) : null}
+          </select>
+        );
+        break;
+      case "multiple":
+        this.element = (
+          <select multiple {...attributes}>
+            {this.value ? this.createSelectOptions(this.value) : null}
+          </select>
+        );
+        break;
+      case "text":
+      default:
+        this.element = <input type="text" value={this.value} {...attributes} />;
+        break;
     }
 
     return this.element;
@@ -275,7 +281,10 @@ export class ChoicesJSStencil implements IChoicesProps, IChoicesMethods {
       shouldSortItems: this.shouldSortItems,
       sortFn: this.sortFn,
       placeholder: true,
-      placeholderValue: this.placeholderValue || (typeof this.placeholder === 'string' && this.placeholder) || ' ',
+      placeholderValue:
+        this.placeholderValue ||
+        (typeof this.placeholder === "string" && this.placeholder) ||
+        " ",
       searchPlaceholderValue: this.searchPlaceholderValue,
       prependValue: this.prependValue,
       appendValue: this.appendValue,
@@ -294,7 +303,10 @@ export class ChoicesJSStencil implements IChoicesProps, IChoicesMethods {
     };
     const settings = filterObject(props, isDefined);
 
-    this.choice = new Choices(this.root.querySelector('[data-selector="root"]'), settings);
+    this.choice = new Choices(
+      this.root.querySelector('[data-selector="root"]'),
+      settings
+    );
   }
 
   private destroy() {
@@ -308,7 +320,11 @@ export class ChoicesJSStencil implements IChoicesProps, IChoicesMethods {
     }
   }
 
-  private createSelectOptions(values: string | Array<string>): Array<HTMLStencilElement> {
-    return getValues(values).map((value) => <option value={ value }>{ value }</option>);
+  private createSelectOptions(
+    values: string | Array<string>
+  ): Array<HTMLStencilElement> {
+    return getValues(values).map(value => (
+      <option value={value}>{value}</option>
+    ));
   }
 }

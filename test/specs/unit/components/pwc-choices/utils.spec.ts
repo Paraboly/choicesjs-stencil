@@ -1,4 +1,4 @@
-import { filterObject, isDefined, getValues } from '../../../../../src/components/choicesjs-stencil/utils';
+import { filterObject, isDefined, getValues } from '../../../../../src/components/pwc-choices/utils';
 
 describe('Utils', () => {
   describe('filterObject()', () => {

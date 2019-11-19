@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>ChoicesJS Web Component (dev)</title>
     <script src="https://rawgit.com/jshjohnson/Choices/v7.0.0/public/assets/scripts/choices.js"></script>
-    <script type="module" src="/build/choicesjsstencil.esm.js"></script>
-    <script nomodule src="/build/choicesjsstencil.js"></script>
+    <script type="module" src="/build/pwc-choices.esm.js"></script>
+    <script nomodule src="/build/pwc-choices.js"></script>
     <style>
       * {
         box-sizing: border-box;
@@ -19,7 +19,7 @@
         width: 100%;
         margin: 0;
       }
-      choicesjs-stencil {
+      pwc-choices {
         position: relative;
         width: 100%;
         height: auto;
@@ -55,18 +55,18 @@
   </head>
   <body>
     <h2>ChoicesJS Web Component (dev example)</h2>
-    <form name="choicesjs-stencil">
+    <form name="pwc-choices">
       <div class="select">
         <header>Text / Tags</header>
-        <choicesjs-stencil name="text" type="text" value="Superstar,Gazelle" placeholder="add shoe..."></choicesjs-stencil>
+        <pwc-choices name="text" type="text" value="Superstar,Gazelle" placeholder="add shoe..."></pwc-choices>
       </div>
       <div class="select">
         <header>Select / Dropdown</header>
-        <choicesjs-stencil name="single" type="single" value="Superstar,Gazelle,Stan Smith,Campus"></choicesjs-stencil>
+        <pwc-choices name="single" type="single" value="Superstar,Gazelle,Stan Smith,Campus"></pwc-choices>
       </div>
       <div class="select">
         <header>Multiselect</header>
-        <choicesjs-stencil name="multiple" type="multiple"></choicesjs-stencil>
+        <pwc-choices name="multiple" type="multiple"></pwc-choices>
       </div>
       <div class="submit">
         <button type="submit" class="btn">submit</button>
@@ -106,11 +106,11 @@
           'choice', 'change', 'search', 'showDropdown', 'hideDropdown'
         ];
 
-        var selectText = document.querySelector('choicesjs-stencil[type=text]');
-        var selectSingle = document.querySelector('choicesjs-stencil[type=single]');
-        var selectMultiple = document.querySelector('choicesjs-stencil[type=multiple]');
+        var selectText = document.querySelector('pwc-choices[type=text]');
+        var selectSingle = document.querySelector('pwc-choices[type=single]');
+        var selectMultiple = document.querySelector('pwc-choices[type=multiple]');
 
-        var form = document.querySelector('form[name=choicesjs-stencil]');
+        var form = document.querySelector('form[name=pwc-choices]');
 
         form.addEventListener('submit', function(event) {
           var valuesTextContainer = document.querySelector('.values-container p');

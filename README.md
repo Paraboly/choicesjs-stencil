@@ -1,6 +1,6 @@
-[![npm version](https://badge.fury.io/js/choicesjs-stencil.svg)](https://www.npmjs.com/package/choicesjs-stencil)
+[![npm version](https://badge.fury.io/js/pwc-choices.svg)](https://www.npmjs.com/package/pwc-choices)
 
-[![Build Status](https://api.travis-ci.com/adidas/choicesjs-stencil.svg?branch=master)](https://travis-ci.com/adidas/choicesjs-stencil)
+[![Build Status](https://api.travis-ci.com/adidas/pwc-choices.svg?branch=master)](https://travis-ci.com/adidas/pwc-choices)
 
 ![](./logo.png)
 
@@ -37,33 +37,33 @@ This dependency can be added to the bundle as external library, or it can just b
 This component is available via NPM.
 
 ```
-npm install choicesjs-stencil
+npm install pwc-choices
 ```
 
 Include the component in your application via HTML script:
 
 ```html
-<script src="choicesjs-stencil/dist/choicesjsstencil.js"></script>
+<script src="pwc-choices/dist/choicesjsstencil.js"></script>
 ```
 
 Use it as a new HTML element in your template:
 
 ```html
-<choicesjs-stencil values="foo,bar"></choicesjs-stencil>
+<pwc-choices values="foo,bar"></pwc-choices>
 ```
 
 To be able to work with the component in a form it needs a name:
 
 ```html
 <form name="form">
-  <choicesjs-stencil name="select" values="foo,bar"></choicesjs-stencil>
+  <pwc-choices name="select" values="foo,bar"></pwc-choices>
 </form>
 ```
 
 The component is also available as module to be loaded via module bundler:
 
 ```javascript
-require('choicesjs-stencil');
+require('pwc-choices');
 ```
 
 ### Advanced usage
@@ -71,10 +71,10 @@ require('choicesjs-stencil');
 Some of this component properties must be set via JavaScript (non primitive types). As well as properties, the component provides public methods and events (see the [library documentation][choicesjs-documentation]).
 
 ```html
-<choicesjs-stencil type="single"></choicesjs-stencil>
+<pwc-choices type="single"></pwc-choices>
 
 <script>
-  var element = document.querySelector('choicesjs-stencil');
+  var element = document.querySelector('pwc-choices');
 
   element.choices = [
     {
@@ -117,13 +117,13 @@ The wrapper has to cover at least:
 ```javascript
 // Loading ChoicesJS library and ChoicesJS Stencil Web Component
 import 'expose-loader?Choices!choices.js';
-import { defineCustomElements } from 'choicesjs-stencil/dist/loader';
+import { defineCustomElements } from 'pwc-choices/dist/loader';
 
 defineCustomElements(window);
 
 // VueJS component
 <template>
-  <choicesjs-stencil class="choicesjs-stencil"
+  <pwc-choices class="pwc-choices"
       :type="type"
       :name="name"
       ...
@@ -274,7 +274,7 @@ For further information open the [adidas terms and conditions][terms-and-conditi
 
 [choicesjs]: https://github.com/jshjohnson/Choices
 [choicesjs-documentation]: https://github.com/jshjohnson/Choices/tree/master
-[demo]: https://adidas.github.io/choicesjs-stencil/
+[demo]: https://adidas.github.io/pwc-choices/
 [jest]: https://jestjs.io/
 [jsx]: https://jsx.github.io/
 [peer-dependencies]: https://docs.npmjs.com/files/package.json#peerdependencies
