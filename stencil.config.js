@@ -1,21 +1,22 @@
-const { sass } = require('@stencil/sass');
+const { sass } = require("@stencil/sass");
 
 exports.config = {
-  namespace: 'ChoicesJSStencil',
+  namespace: "pwc-choices",
   bundles: [
     {
-      components: [ 'pwc-choices' ]
+      components: ["pwc-choices"]
     }
   ],
   outputTargets: [
     {
-      type: 'dist'
-    }, {
-      type: 'www',
-      indexHtml: './index.html'
+      type: "dist"
+    },
+    {
+      type: "www",
+      indexHtml: "./index.html"
     }
   ],
-  plugins: [ sass() ],
+  plugins: [sass()],
   devServer: {
     openBrowser: false
   }
