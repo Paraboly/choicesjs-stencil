@@ -18,6 +18,8 @@ import {
 } from "./interfaces";
 import { getValues, filterObject, isDefined } from "./utils";
 
+import * as Choices from "choices.js";
+
 @Component({
   tag: "pwc-choices",
   styleUrl: "pwc-choices.scss"
@@ -303,7 +305,7 @@ export class PwcChoicesComponent implements IChoicesProps, IChoicesMethods {
     };
     const settings = filterObject(props, isDefined);
 
-    this.choice = new Choices(
+    this.choice = new Choices.default(
       this.root.querySelector('[data-selector="root"]'),
       settings
     );

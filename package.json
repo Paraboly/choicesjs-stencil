@@ -31,7 +31,7 @@
     "test:coverage": "npm run test:coverage:unit",
     "test:coverage:unit": "npm run test:unit -- --coverage"
   },
-  "peerDependencies": {
+  "dependencies": {
     "choices.js": "^7.0"
   },
   "devDependencies": {
@@ -40,7 +40,6 @@
     "@stencil/sass": "1.0.1",
     "@stencil/utils": "0.0.5",
     "@types/jest": "21.1.8",
-    "choices.js": "7.0.0",
     "copy": "0.3.2",
     "jest": "21.2.1",
     "jest-dot-reporter": "1.0.7",
