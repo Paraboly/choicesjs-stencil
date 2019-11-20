@@ -11,6 +11,8 @@
 
 ![pwc-choices](https://raw.githubusercontent.com/paraboly/pwc-choices/master/assets/Screenshots/JSLibraryBoilerplate.png)
 
+## [Live JSFiddle Example](https://jsfiddle.net/starikcetin/L3ye08gr/)
+
 # pwc-choices Web Component
 
 Select component which just wraps [ChoicesJS][choicesjs] in a real [Web Component][web-component]. It has been created using [StencilJS][stenciljs], and written with [_Typescript_][typescript] and [_JSX_][jsx].
