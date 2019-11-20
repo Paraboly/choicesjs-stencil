@@ -72,8 +72,8 @@
         <h2 class="col-sm-12">ChoicesJS Web Component: test page</h2>
       </div>
       <div class="row">
-        <form class="col-sm-12 select-container" name="choicesjs-stencil-form">
-          <choicesjs-stencil name="select" class="select"></choicesjs-stencil>
+        <form class="col-sm-12 select-container" name="pwc-choices-form">
+          <pwc-choices name="select" class="select"></pwc-choices>
           <button class="btn btn-primary" type="submit">Submit</button>
         </form>
       </div>
@@ -943,13 +943,13 @@ return a.label.localeCompare(b.label);
           'choice', 'change', 'search', 'showDropdown', 'hideDropdown'
         ];
 
-        var choicesjsStencilForm = document.querySelector('form[name=choicesjs-stencil-form]');
+        var choicesjsStencilForm = document.querySelector('form[name=pwc-choices-form]');
         var selectOptionsForm = document.querySelector('form[name=select-options-form]');
         var customStylesForm = document.querySelector('form[name=custom-styles-form]');
         var customSearchForm = document.querySelector('form[name=custom-search-form]');
         var customStyles = document.querySelector('#customStyles');
         var typeSelect = document.querySelector('select[name="type"]');
-        var select = document.querySelector('choicesjs-stencil');
+        var select = document.querySelector('pwc-choices');
         var typeDependencies = document.querySelectorAll('.type');
 
         jQuery('[data-toggle="tooltip"]').tooltip({html: true});

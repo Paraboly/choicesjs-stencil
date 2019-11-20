@@ -1,12 +1,31 @@
 {
-  "name": "choicesjs-stencil",
-  "version": "1.4.0",
-  "description": "Select Web Component which wraps ChoicesJS library using StencilJS",
+  "name": "@paraboly/pwc-choices",
+  "version": "0.0.1",
+  "description": "Choices.js wrapper for Stencil.js",
+  "homepage": "https://www.paraboly.com",
+  "bugs": "https://github.com/Paraboly/pwc-choices/issues",
+  "author": "starikcetin <cetinsamedtarik@gmail.com> (https://github.com/starikcetin)",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/adidas/choicesjs-stencil.git"
+    "url": "https://github.com/paraboly/pwc-choices.git"
   },
-  "license": "MIT",
+  "keywords": [
+    "choicesjs",
+    "select",
+    "stenciljs",
+    "web-component",
+	"paraboly",
+	"starikcetin",
+	"stencil.js",
+	"choices.js",
+	"pwc",
+	"paraboly-web-component",
+	"javascript",
+	"typescript",
+    "ui-lib",
+  ],
+  
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/types/components.d.ts",
@@ -31,16 +50,15 @@
     "test:coverage": "npm run test:coverage:unit",
     "test:coverage:unit": "npm run test:unit -- --coverage"
   },
-  "peerDependencies": {
+  "dependencies": {
     "choices.js": "^7.0"
   },
   "devDependencies": {
     "@babel/plugin-syntax-dynamic-import": "7.2.0",
     "@stencil/core": "1.5.4",
-    "@stencil/sass": "1.0.1",
+    "@stencil/sass": "^1.0.1",
     "@stencil/utils": "0.0.5",
     "@types/jest": "21.1.8",
-    "choices.js": "7.0.0",
     "copy": "0.3.2",
     "jest": "21.2.1",
     "jest-dot-reporter": "1.0.7",
@@ -54,16 +72,9 @@
   "optionalDependencies": {
     "fsevents": "1.2.7"
   },
-  "keywords": [
-    "choicesjs",
-    "select",
-    "stenciljs",
-    "web-component"
-  ],
   "files": [
     "dist",
     "README.md",
-    "CHANGELOG.md",
     "LICENSE"
   ],
   "publishConfig": {
