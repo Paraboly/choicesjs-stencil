@@ -106,7 +106,7 @@ export type OnCreateTemplates = (template) => any;
 export interface IChoicesProps {
   silent?: boolean;
   items?: Array<any>;
-  choices?: Array<any>;
+  choices?: Array<any> | string;
   classNames?: ClassNames;
   renderChoiceLimit?: number;
   maxItemCount?: number;
@@ -123,7 +123,7 @@ export interface IChoicesProps {
   searchFloor?: number;
   searchResultLimit?: number;
   fuseOptions?: FuseOptions;
-  position?: 'auto' | 'top' | 'bottom';
+  position?: "auto" | "top" | "bottom";
   resetScrollPosition?: boolean;
   addItemFilterFn?: ItemFilterFn;
   shouldSort?: boolean;
@@ -133,7 +133,7 @@ export interface IChoicesProps {
   searchPlaceholderValue?: string;
   prependValue?: string;
   appendValue?: string;
-  renderSelectedChoices?: 'always' | 'auto';
+  renderSelectedChoices?: "always" | "auto";
   loadingText?: string;
   noResultsText?: string | NoResultsTextFn;
   noChoicesText?: string | NoChoicesTextFn;

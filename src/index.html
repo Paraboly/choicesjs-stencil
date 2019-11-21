@@ -82,9 +82,29 @@
         <button type="submit" class="btn">submit</button>
       </div>
     </form>
+
     <div class="values-container">
       <p class="values-container__text"></p>
     </div>
+
+    <header>Passing choices over HTML attibute</header>
+    <pwc-choices
+      type="multiple"
+      choices='[
+      {
+        "value": "superstar",
+        "label": "Superstar",
+        "selected": false,
+        "disabled": false
+      },
+      {
+        "value": "foo",
+        "label": "bar",
+        "selected": false,
+        "disabled": false
+      }
+    ]'
+    ></pwc-choices>
 
     <script>
       document.addEventListener("DOMContentLoaded", function() {
