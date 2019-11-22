@@ -57,9 +57,23 @@ Use it as a new HTML element in your template:
 To be able to work with the component in a form it needs a name:
 
 ```html
-<form name="form">
-  <pwc-choices name="select" values="foo,bar"></pwc-choices>
-</form>
+<pwc-choices
+  type="multiple"
+  choices='[
+      {
+        "value": "superstar",
+        "label": "Superstar",
+        "selected": false,
+        "disabled": false
+      },
+      {
+        "value": "foo",
+        "label": "bar",
+        "selected": false,
+        "disabled": false
+      }
+    ]'
+></pwc-choices>
 ```
 
 ### Advanced usage
