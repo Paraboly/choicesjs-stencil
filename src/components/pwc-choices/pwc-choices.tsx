@@ -258,20 +258,12 @@ export class PwcChoicesComponent implements IChoicesMethods, IChoicesProps {
   }
 
   private init() {
-    let choicesAsArray: Array<any>;
-
-    if (this.choices) {
-      if (typeof this.choices === "string") {
-        choicesAsArray = JSON.parse(this.choices);
-      } else {
-        choicesAsArray = this.choices;
-      }
-    }
-
     const props = {
       silent: this.silent,
       items: this.items,
-      choices: choicesAsArray,
+      choices:
+        (typeof this.choices === "string" && JSON.parse(this.choices)) ||
+        this.choices,
       renderChoiceLimit: this.renderChoiceLimit,
       maxItemCount: this.maxItemCount,
       addItems: this.addItems,
