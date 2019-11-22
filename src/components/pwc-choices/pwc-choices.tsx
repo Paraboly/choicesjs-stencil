@@ -24,14 +24,14 @@ import * as Choices from "choices.js";
   tag: "pwc-choices",
   styleUrl: "pwc-choices.scss"
 })
-export class PwcChoicesComponent implements IChoicesProps, IChoicesMethods {
+export class PwcChoicesComponent implements IChoicesMethods, IChoicesProps {
   @Prop() public type?: "single" | "multiple" | "text";
   @Prop() public value: string;
   @Prop() public name: string;
 
   @Prop() public silent: boolean;
   @Prop() public items: Array<any>;
-  @Prop() public choices: Array<any>;
+  @Prop() public choices: Array<any> | string;
   @Prop() public renderChoiceLimit: number;
   @Prop() public maxItemCount: number;
   @Prop() public addItems: boolean;
@@ -258,10 +258,20 @@ export class PwcChoicesComponent implements IChoicesProps, IChoicesMethods {
   }
 
   private init() {
+    let choicesAsArray: Array<any>;
+
+    if (this.choices) {
+      if (typeof this.choices === "string") {
+        choicesAsArray = JSON.parse(this.choices);
+      } else {
+        choicesAsArray = this.choices;
+      }
+    }
+
     const props = {
       silent: this.silent,
       items: this.items,
-      choices: this.choices,
+      choices: choicesAsArray,
       renderChoiceLimit: this.renderChoiceLimit,
       maxItemCount: this.maxItemCount,
       addItems: this.addItems,
