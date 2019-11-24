@@ -22,7 +22,8 @@ import * as Choices from "choices.js";
 
 @Component({
   tag: "pwc-choices",
-  styleUrl: "pwc-choices.scss"
+  styleUrl: "pwc-choices.scss",
+  shadow: false
 })
 export class PwcChoicesComponent implements IChoicesMethods, IChoicesProps {
   @Prop() public type?: "single" | "multiple" | "text";
