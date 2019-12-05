@@ -120,7 +120,7 @@ Some of this component properties must be set via JavaScript (non primitive type
 
 - `type`: the type of selector to render, defaults to `text`. Options: `text`, `single`, `multiple`.
 - `items`: a list of preselected values for `text` type select. It must be set via JavaScript.
-- `choices`: a list of available values for `single` and `multiple` type selects. It must be set via JavaScript.
+- `choices`: a list of available values for `single` and `multiple` type selects.
 
 Additionally, more options can be set, check the [documentation][choicesjs-documentation] for further details.
 
