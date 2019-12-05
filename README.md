@@ -31,7 +31,13 @@ For more information read the [library documentation][choicesjs-documentation].
 
 ### Script tag
 
-- Put a script tag similar to this `<script type="module" src="https://unpkg.com/@paraboly/pwc-choices@latest/dist/pwc-choices/pwc-choices.esm.js"></script>` in the head of your index.html
+- Put two script tags similar to this in the head of your index.html:
+
+```html
+<script type="module" src="https://unpkg.com/@paraboly/pwc-choices@latest/dist/pwc-choices/pwc-choices.esm.js"></script>
+<script nomodule src="https://unpkg.com/@paraboly/pwc-choices@latest/dist/pwc-choices/pwc-choices.js"></script>
+```
+
 - Then you can use the element anywhere in your template, JSX, html etc
 
 ### Node Modules
