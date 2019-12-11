@@ -1,24 +1,32 @@
-import { h, Component, Element, Method, Prop } from "@stencil/core";
-import { HTMLStencilElement } from "@stencil/core/internal";
 import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Method,
+  Prop
+} from "@stencil/core";
+import { HTMLStencilElement } from "@stencil/core/internal";
+import * as Choices from "choices.js";
+import _ from "lodash";
+import {
+  AddItemTextFn,
   AjaxFn,
   ClassNames,
   FuseOptions,
-  IChoicesProps,
   IChoicesMethods,
+  IChoicesProps,
   ItemFilterFn,
-  NoResultsTextFn,
-  NoChoicesTextFn,
-  AddItemTextFn,
   MaxItemTextFn,
-  SortFn,
-  OnInit,
+  NoChoicesTextFn,
+  NoResultsTextFn,
   OnCreateTemplates,
+  OnInit,
+  SortFn,
   UniqueItemText
 } from "./interfaces";
-import { getValues, filterObject, isDefined } from "./utils";
-
-import * as Choices from "choices.js";
+import { filterObject, getValues, isDefined } from "./utils";
 
 @Component({
   tag: "pwc-choices",
@@ -26,6 +34,8 @@ import * as Choices from "choices.js";
   shadow: false
 })
 export class PwcChoicesComponent implements IChoicesMethods, IChoicesProps {
+  @Event() onChange: EventEmitter;
+
   @Prop() public type?: "single" | "multiple" | "text";
   @Prop() public value: string;
   @Prop() public name: string;
@@ -70,6 +80,14 @@ export class PwcChoicesComponent implements IChoicesMethods, IChoicesProps {
   @Prop() public fuseOptions: FuseOptions;
   @Prop() public callbackOnInit: OnInit;
   @Prop() public callbackOnCreateTemplates: OnCreateTemplates;
+
+  /*
+   * "value": consider duplicate if value is the same
+   * "label": consider duplicate if label is the same
+   * "all": consider duplicate if all fields are the same
+   * "none": disable distinct filter (leave choices as-is)
+   */
+  @Prop() public distinct: "value" | "label" | "all" | "none" = "none";
 
   @Element() private readonly root: HTMLElement;
 
@@ -258,13 +276,35 @@ export class PwcChoicesComponent implements IChoicesMethods, IChoicesProps {
     return this.element;
   }
 
+  private prepareChoices(): Array<any> {
+    const choices: Array<any> =
+      (typeof this.choices === "string" && JSON.parse(this.choices)) ||
+      this.choices;
+
+    switch (this.distinct) {
+      case "value":
+        return _.uniqBy(choices, c => c.value);
+      case "label":
+        return _.uniqBy(choices, c => c.label);
+      case "all":
+        return _.uniqWith(choices, _.isEqual);
+      case "none":
+        return choices;
+      default:
+        console.error(
+          "PwcChoices: Distinct mode '" +
+            this.distinct +
+            "' is not supported. Valid modes: value | label | ref | none"
+        );
+        return choices;
+    }
+  }
+
   private init() {
     const props = {
       silent: this.silent,
       items: this.items,
-      choices:
-        (typeof this.choices === "string" && JSON.parse(this.choices)) ||
-        this.choices,
+      choices: this.prepareChoices(),
       renderChoiceLimit: this.renderChoiceLimit,
       maxItemCount: this.maxItemCount,
       addItems: this.addItems,

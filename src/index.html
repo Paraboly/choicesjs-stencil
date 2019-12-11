@@ -98,12 +98,19 @@
         "disabled": false
       },
       {
+        "value": "superstar",
+        "label": "Superstar",
+        "selected": false,
+        "disabled": false
+      },
+      {
         "value": "foo",
         "label": "bar",
         "selected": false,
         "disabled": false
       }
     ]'
+      distinct="value"
     ></pwc-choices>
 
     <script>
@@ -250,6 +257,8 @@
         [selectText, selectSingle, selectMultiple].forEach(function(select) {
           select.removeItems = true;
           select.removeItemButton = true;
+
+          console.log(select);
 
           events.forEach(function(event) {
             select.addEventListener(event, function(data) {

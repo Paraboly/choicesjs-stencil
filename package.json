@@ -1,6 +1,6 @@
 {
   "name": "@paraboly/pwc-choices",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Choices.js wrapper for Stencil.js",
   "homepage": "https://www.paraboly.com",
   "bugs": "https://github.com/Paraboly/pwc-choices/issues",
@@ -50,7 +50,9 @@
     "test:coverage:unit": "npm run test:unit -- --coverage"
   },
   "dependencies": {
-    "choices.js": "^7.0"
+    "@types/lodash": "^4.14.149",
+    "choices.js": "^7.0",
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "@babel/plugin-syntax-dynamic-import": "7.2.0",
