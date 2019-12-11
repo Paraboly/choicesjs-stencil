@@ -1,4 +1,10 @@
-export type FilterObjectFn = (value: any, key: string | number, obj: object) => boolean;
+import Enumerable from "linq";
+
+export type FilterObjectFn = (
+  value: any,
+  key: string | number,
+  obj: object
+) => boolean;
 
 /**
  * Filter out entries from an object.
@@ -26,7 +32,7 @@ export function filterObject(obj: object, fn: FilterObjectFn): object {
  * @returns whether the value is defined.
  */
 export function isDefined(value: any): boolean {
-  return typeof value !== 'undefined';
+  return typeof value !== "undefined";
 }
 
 /**
@@ -36,7 +42,12 @@ export function isDefined(value: any): boolean {
  * @returns List of values.
  */
 export function getValues(value: string | Array<string>): Array<string> {
-  return typeof value !== 'undefined'
-    ? [].concat(typeof value === 'string' ? value.split(',') : value)
+  return typeof value !== "undefined"
+    ? [].concat(typeof value === "string" ? value.split(",") : value)
     : [];
+}
+
+export function makeDistinct(arr, groupBy) {
+  const grouped = Enumerable.from(arr).groupBy(groupBy);
+  return grouped.select(g => g[0]).toArray();
 }

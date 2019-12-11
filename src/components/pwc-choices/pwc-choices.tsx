@@ -1,4 +1,12 @@
-import { h, Component, Element, Method, Prop } from "@stencil/core";
+import {
+  h,
+  Component,
+  Element,
+  Method,
+  Prop,
+  Event,
+  EventEmitter
+} from "@stencil/core";
 import { HTMLStencilElement } from "@stencil/core/internal";
 import {
   AjaxFn,
@@ -16,7 +24,7 @@ import {
   OnCreateTemplates,
   UniqueItemText
 } from "./interfaces";
-import { getValues, filterObject, isDefined } from "./utils";
+import { getValues, filterObject, isDefined, makeDistinct } from "./utils";
 
 import * as Choices from "choices.js";
 
@@ -26,6 +34,8 @@ import * as Choices from "choices.js";
   shadow: false
 })
 export class PwcChoicesComponent implements IChoicesMethods, IChoicesProps {
+  @Event() onChange: EventEmitter;
+
   @Prop() public type?: "single" | "multiple" | "text";
   @Prop() public value: string;
   @Prop() public name: string;
@@ -70,6 +80,8 @@ export class PwcChoicesComponent implements IChoicesMethods, IChoicesProps {
   @Prop() public fuseOptions: FuseOptions;
   @Prop() public callbackOnInit: OnInit;
   @Prop() public callbackOnCreateTemplates: OnCreateTemplates;
+
+  @Prop() public distinctChoices: boolean | string;
 
   @Element() private readonly root: HTMLElement;
 
@@ -258,13 +270,23 @@ export class PwcChoicesComponent implements IChoicesMethods, IChoicesProps {
     return this.element;
   }
 
+  private prepareChoices() {
+    const choices =
+      (typeof this.choices === "string" && JSON.parse(this.choices)) ||
+      this.choices;
+
+    const processedChoices = this.distinctChoices
+      ? makeDistinct(choices, e => e.value)
+      : choices;
+
+    return processedChoices;
+  }
+
   private init() {
     const props = {
       silent: this.silent,
       items: this.items,
-      choices:
-        (typeof this.choices === "string" && JSON.parse(this.choices)) ||
-        this.choices,
+      choices: this.prepareChoices(),
       renderChoiceLimit: this.renderChoiceLimit,
       maxItemCount: this.maxItemCount,
       addItems: this.addItems,
@@ -304,7 +326,8 @@ export class PwcChoicesComponent implements IChoicesMethods, IChoicesProps {
       classNames: this.classNames,
       fuseOptions: this.fuseOptions,
       callbackOnInit: this.callbackOnInit,
-      callbackOnCreateTemplates: this.callbackOnCreateTemplates
+      callbackOnCreateTemplates: this.callbackOnCreateTemplates,
+      change: e => console.log("hereeeeeeee" + e)
     };
     const settings = filterObject(props, isDefined);
 

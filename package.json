@@ -50,7 +50,8 @@
     "test:coverage:unit": "npm run test:unit -- --coverage"
   },
   "dependencies": {
-    "choices.js": "^7.0"
+    "choices.js": "^7.0",
+    "linq": "^3.2.1"
   },
   "devDependencies": {
     "@babel/plugin-syntax-dynamic-import": "7.2.0",
