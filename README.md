@@ -112,6 +112,8 @@ Some of this component properties must be set via JavaScript (non primitive type
     }
   ];
 
+  element.distinct = "value";
+
   element.disable();
 </script>
 ```
@@ -121,6 +123,11 @@ Some of this component properties must be set via JavaScript (non primitive type
 - `type`: the type of selector to render, defaults to `text`. Options: `text`, `single`, `multiple`.
 - `items`: a list of preselected values for `text` type select. It must be set via JavaScript.
 - `choices`: a list of available values for `single` and `multiple` type selects.
+- `distinct`: filters the choices to make them distinct. Defaults to `none`. Options:
+  - `value`: consider duplicate if `value` is the same
+  - `label`: consider duplicate if `label` is the same
+  - `all`: consider duplicate if all fields are the same
+  - `none`: disable distinct filter (leave choices as-is)
 
 Additionally, more options can be set, check the [documentation][choicesjs-documentation] for further details.
 
