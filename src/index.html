@@ -55,67 +55,23 @@
   </head>
 
   <body>
-    <h2>ChoicesJS Web Component (dev example)</h2>
-    <form name="pwc-choices">
-      <div class="select">
-        <header>Text / Tags</header>
-        <pwc-choices
-          name="text"
-          type="text"
-          value="Superstar,Gazelle"
-          placeholder="add shoe..."
-        ></pwc-choices>
-      </div>
-      <div class="select">
-        <header>Select / Dropdown</header>
-        <pwc-choices
-          name="single"
-          type="single"
-          value="Superstar,Gazelle,Stan Smith,Campus"
-        ></pwc-choices>
-      </div>
-      <div class="select">
-        <header>Multiselect</header>
-        <pwc-choices name="multiple" type="multiple"></pwc-choices>
-      </div>
-      <div class="submit">
-        <button type="submit" class="btn">submit</button>
-      </div>
-    </form>
+    <pwc-choices name="multiple" type="multiple"></pwc-choices>
+    <div id="result"></div>
 
-    <div class="values-container">
-      <p class="values-container__text"></p>
-    </div>
-
-    <header>Passing choices over HTML attibute</header>
-    <pwc-choices
-      type="multiple"
-      choices='[
-      {
-        "value": "superstar",
-        "label": "Superstar",
-        "selected": false,
-        "disabled": false
-      },
-      {
-        "value": "superstar",
-        "label": "Superstar",
-        "selected": false,
-        "disabled": false
-      },
-      {
-        "value": "foo",
-        "label": "bar",
-        "selected": false,
-        "disabled": false
-      }
-    ]'
-      distinct="value"
-    ></pwc-choices>
+    <button id="initer">Init</button>
+    <button id="logger">Log</button>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        var choices = [
+      const choices = document.querySelector("pwc-choices");
+
+      document.querySelector("#logger").addEventListener("click", e => {
+        e.preventDefault();
+        choices.getValue().then(value => console.log(value));
+      });
+
+      document.querySelector("#initer").addEventListener("click", e => {
+        e.preventDefault();
+        choices.choices = [
           {
             value: "superstar",
             label: "Superstar",
@@ -123,155 +79,12 @@
             disabled: false
           },
           {
-            value: "adizero",
-            label: "adizero",
-            selected: false,
-            disabled: false
-          },
-          {
-            value: "stansmith",
-            label: "Stan Smith",
-            selected: true,
-            disabled: false
-          },
-          {
-            value: "gazelle",
-            label: "Gazelle",
-            selected: false,
-            disabled: false
-          },
-          {
-            value: "ultraboost",
-            label: "ultraboost",
-            selected: false,
-            disabled: false
-          },
-          { value: "nmd", label: "NMD", selected: false, disabled: false },
-          { value: "yeezy", label: "YEEZY", selected: false, disabled: false },
-          {
-            value: "campus",
-            label: "Campus",
-            selected: false,
-            disabled: false
-          },
-          { value: "zx500", label: "ZX 500", selected: false, disabled: true },
-          { value: "samba", label: "Samba", selected: false, disabled: false },
-          {
-            value: "predator",
-            label: "Predator",
-            selected: false,
-            disabled: false
-          },
-          {
-            value: "munchen",
-            label: "Munchen",
-            selected: false,
-            disabled: false
-          },
-          {
-            value: "zxflux",
-            label: "ZX Flux",
-            selected: false,
-            disabled: false
-          },
-          { value: "eqt", label: "EQT", selected: false, disabled: false },
-          { value: "solar", label: "Solar", selected: false, disabled: false },
-          { value: "copa", label: "Copa", selected: false, disabled: true },
-          {
-            value: "terrex",
-            label: "Terrex",
-            selected: false,
-            disabled: false
-          },
-          {
-            value: "pureboost",
-            label: "pureboost",
-            selected: false,
-            disabled: false
-          },
-          {
-            value: "dragon",
-            label: "Dragon",
-            selected: false,
-            disabled: false
-          },
-          { value: "yung", label: "YUNG", selected: false, disabled: false },
-          {
-            value: "deerupt",
-            label: "Deerupt",
-            selected: false,
-            disabled: false
-          },
-          {
-            value: "kamanda",
-            label: "kamanda",
+            value: "foo",
+            label: "bar",
             selected: false,
             disabled: false
           }
         ];
-        var events = [
-          "addItem",
-          "removeItem",
-          "highlightItem",
-          "unhighlightItem",
-          "choice",
-          "change",
-          "search",
-          "showDropdown",
-          "hideDropdown"
-        ];
-
-        var selectText = document.querySelector("pwc-choices[type=text]");
-        var selectSingle = document.querySelector("pwc-choices[type=single]");
-        var selectMultiple = document.querySelector(
-          "pwc-choices[type=multiple]"
-        );
-
-        var form = document.querySelector("form[name=pwc-choices]");
-
-        form.addEventListener("submit", function(event) {
-          var valuesTextContainer = document.querySelector(
-            ".values-container p"
-          );
-          var form = new FormData(this);
-          var values = [];
-
-          form.forEach(function(value, name) {
-            values.push(name + ": `" + value + "`");
-          });
-
-          valuesTextContainer.innerHTML = values.join(" | ");
-
-          console.log("values", values);
-
-          event.preventDefault();
-          event.stopImmediatePropagation();
-        });
-
-        selectMultiple.choices = choices;
-
-        [selectSingle, selectMultiple].forEach(function(select) {
-          select.placeholder = true;
-          select.placeholderValue = "type...";
-        });
-        [selectText, selectSingle, selectMultiple].forEach(function(select) {
-          select.removeItems = true;
-          select.removeItemButton = true;
-
-          console.log(select);
-
-          events.forEach(function(event) {
-            select.addEventListener(event, function(data) {
-              console.log(event, data.detail);
-            });
-          });
-        });
-
-        // expose references
-        window.form = form;
-        window.selectText = selectText;
-        window.selectSingle = selectSingle;
-        window.selectMultiple = selectMultiple;
       });
     </script>
   </body>

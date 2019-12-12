@@ -48,7 +48,8 @@ export class PwcChoicesComponent implements IChoicesMethods, IChoicesProps {
   @Watch("choices")
   watchHandler(newValue) {
     this.choice.clearStore();
-    this.choice.setChoices(newValue, "value", "label", true);
+    const prepped = this.prepareChoices(newValue);
+    this.choice.setChoices(prepped, "value", "label", true);
   }
 
   @Prop() public renderChoiceLimit: number;
@@ -284,27 +285,26 @@ export class PwcChoicesComponent implements IChoicesMethods, IChoicesProps {
     return this.element;
   }
 
-  private prepareChoices(): Array<any> {
-    const choices: Array<any> =
-      (typeof this.choices === "string" && JSON.parse(this.choices)) ||
-      this.choices;
+  private prepareChoices(choices: Array<any> | string): Array<any> {
+    const choicesResolved: Array<any> =
+      (typeof choices === "string" && JSON.parse(choices)) || this.choices;
 
     switch (this.distinct) {
       case "value":
-        return _.uniqBy(choices, c => c.value);
+        return _.uniqBy(choicesResolved, c => c.value);
       case "label":
-        return _.uniqBy(choices, c => c.label);
+        return _.uniqBy(choicesResolved, c => c.label);
       case "all":
-        return _.uniqWith(choices, _.isEqual);
+        return _.uniqWith(choicesResolved, _.isEqual);
       case "none":
-        return choices;
+        return choicesResolved;
       default:
         console.error(
           "PwcChoices: Distinct mode '" +
             this.distinct +
             "' is not supported. Valid modes: value | label | ref | none"
         );
-        return choices;
+        return choicesResolved;
     }
   }
 
@@ -312,7 +312,7 @@ export class PwcChoicesComponent implements IChoicesMethods, IChoicesProps {
     const props = {
       silent: this.silent,
       items: this.items,
-      choices: this.prepareChoices(),
+      choices: this.prepareChoices(this.choices),
       renderChoiceLimit: this.renderChoiceLimit,
       maxItemCount: this.maxItemCount,
       addItems: this.addItems,
