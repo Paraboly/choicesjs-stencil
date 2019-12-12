@@ -5,7 +5,8 @@ import {
   EventEmitter,
   h,
   Method,
-  Prop
+  Prop,
+  Watch
 } from "@stencil/core";
 import { HTMLStencilElement } from "@stencil/core/internal";
 import * as Choices from "choices.js";
@@ -43,6 +44,13 @@ export class PwcChoicesComponent implements IChoicesMethods, IChoicesProps {
   @Prop() public silent: boolean;
   @Prop() public items: Array<any>;
   @Prop() public choices: Array<any> | string;
+
+  @Watch("choices")
+  watchHandler(newValue) {
+    this.choice.clearStore();
+    this.choice.setChoices(newValue, "value", "label", true);
+  }
+
   @Prop() public renderChoiceLimit: number;
   @Prop() public maxItemCount: number;
   @Prop() public addItems: boolean;
@@ -91,8 +99,8 @@ export class PwcChoicesComponent implements IChoicesMethods, IChoicesProps {
 
   @Element() private readonly root: HTMLElement;
 
-  private choice;
-  private element;
+  private choice: Choices.default;
+  private element: HTMLElement;
 
   @Method()
   public async highlightItem(item: HTMLElement, runEvent?: boolean) {
@@ -190,7 +198,7 @@ export class PwcChoicesComponent implements IChoicesMethods, IChoicesProps {
 
   @Method()
   public async clearChoices() {
-    this.choice.clearChoices();
+    this.choice.setChoices([], "value", "label", true);
 
     return this;
   }
@@ -235,7 +243,7 @@ export class PwcChoicesComponent implements IChoicesMethods, IChoicesProps {
   }
 
   protected componentDidUpdate() {
-    this.init();
+    //this.init();
   }
 
   protected componentDidUnload() {
@@ -250,7 +258,7 @@ export class PwcChoicesComponent implements IChoicesMethods, IChoicesProps {
 
     // destroy choices element to restore previous dom structure
     // so vdom can replace the element correctly
-    this.destroy();
+    //this.destroy();
 
     switch (this.type) {
       case "single":

@@ -1,6 +1,6 @@
 {
   "name": "@paraboly/pwc-choices",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Choices.js wrapper for Stencil.js",
   "homepage": "https://www.paraboly.com",
   "bugs": "https://github.com/Paraboly/pwc-choices/issues",
