@@ -1,14 +1,14 @@
 {
   "name": "@paraboly/pwc-choices",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Choices.js wrapper for Stencil.js",
   "homepage": "https://www.paraboly.com",
-  "bugs": "https://github.com/Paraboly/pwc-choices/issues",
+  "bugs": "https://github.com/Paraboly/pwc-choices-old/issues",
   "author": "starikcetin <cetinsamedtarik@gmail.com> (https://github.com/starikcetin)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/paraboly/pwc-choices.git"
+    "url": "https://github.com/paraboly/pwc-choices-old.git"
   },
   "keywords": [
     "choicesjs",
