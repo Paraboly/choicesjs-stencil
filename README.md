@@ -1,6 +1,7 @@
 # Deprecation Warning
 
 This repository is deprecated at version `0.2.2`.
+
 The development continues at https://github.com/Paraboly/pwc-choices starting from version `0.3.0`.
 
 ---
